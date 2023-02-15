@@ -29,3 +29,84 @@ MonoBehaviour:
     WallRotation: {x: 0, y: 0, z: 0, w: 0}
   - WallPosition: {x: -4, y: 1, z: -0.49}
     WallRotation: {x: 0, y: 0, z: 0, w: 0}
+  - WallPosition: {x: -4, y: 1, z: -0.49}
+    WallRotation: {x: 0, y: 0, z: 0, w: 0}
+  - WallPosition: {x: -4, y: 1, z: -0.49}
+    WallRotation: {x: 0, y: 0, z: 0, w: 0}
+  - WallPosition: {x: -4, y: 1, z: -0.49}
+    WallRotation: {x: 0, y: 0, z: 0, w: 0}
+  - WallPosition: {x: -4, y: 1, z: -0.49}
+    WallRotation: {x: 0, y: 0, z: 0, w: 0}
+  - WallPosition: {x: -4, y: 1, z: -0.49}
+    WallRotation: {x: 0, y: 0, z: 0, w: 0}
+  - WallPosition: {x: -4, y: 1, z: -0.49}
+    WallRotation: {x: 0, y: 0, z: 0, w: 0}
+  - WallPosition: {x: -4, y: 1, z: -0.49}
+    WallRotation: {x: 0, y: 0, z: 0, w: 0}
+  - WallPosition: {x: -4, y: 1, z: -0.49}
+    WallRotation: {x: 0, y: 0, z: 0, w: 0}
+  - WallPosition: {x: -4, y: 1, z: -0.49}
+    WallRotation: {x: 0, y: 0, z: 0, w: 0}
+  - WallPosition: {x: -4, y: 1, z: -0.49}
+    WallRotation: {x: 0, y: 0, z: 0, w: 0}
+  - WallPosition: {x: -4, y: 1, z: -0.49}
+    WallRotation: {x: 0, y: 0, z: 0, w: 0}
+  - WallPosition: {x: -4, y: 1, z: -0.49}
+    WallRotation: {x: 0, y: 0, z: 0, w: 0}
+  - WallPosition: {x: -4, y: 1, z: -0.49}
+    WallRotation: {x: 0, y: 0, z: 0, w: 0}
+  - WallPosition: {x: -4, y: 1, z: -0.49}
+    WallRotation: {x: 0, y: 0, z: 0, w: 0}
+  - WallPosition: {x: -4, y: 1, z: -0.49}
+    WallRotation: {x: 0, y: 0, z: 0, w: 0}
+  - WallPosition: {x: -4, y: 1, z: -0.49}
+    WallRotation: {x: 0, y: 0, z: 0, w: 0}
+  StarPositions:
+  - StarPosition: {x: -3.7, y: 0.001522129, z: 1.41}
+    StarRotation: {x: 0, y: 0, z: 0, w: 0}
+  - StarPosition: {x: -4.75, y: 0.001522129, z: 5.21}
+    StarRotation: {x: 0, y: 0, z: 0, w: 0}
+  - StarPosition: {x: -1.79, y: 0.001522129, z: 8.33}
+    StarRotation: {x: 0, y: 0, z: 0, w: 0}
+  - StarPosition: {x: 8.26, y: 0.001522129, z: 8.33}
+    StarRotation: {x: 0, y: 0, z: 0, w: 0}
+  - StarPosition: {x: -8.58, y: 0.001522129, z: 0.81}
+    StarRotation: {x: 0, y: 0, z: 0, w: 0}
+  - StarPosition: {x: 8.85, y: 0.001522129, z: 0.81}
+    StarRotation: {x: 0, y: 0, z: 0, w: 0}
+  - StarPosition: {x: -4.27, y: 0.001522129, z: -3.41}
+    StarRotation: {x: 0, y: 0, z: 0, w: 0}
+  - StarPosition: {x: -0.06, y: 0, z: -0.07}
+    StarRotation: {x: 0, y: 0, z: 0, w: 0}
+  - StarPosition: {x: -0.06, y: 0, z: -0.07}
+    StarRotation: {x: 0, y: 0, z: 0, w: 0}
+  - StarPosition: {x: -0.06, y: 0, z: -0.07}
+    StarRotation: {x: 0, y: 0, z: 0, w: 0}
+  - StarPosition: {x: -0.06, y: 0, z: -0.07}
+    StarRotation: {x: 0, y: 0, z: 0, w: 0}
+  - StarPosition: {x: -0.06, y: 0, z: -0.07}
+    StarRotation: {x: 0, y: 0, z: 0, w: 0}
+  - StarPosition: {x: -0.06, y: 0, z: -0.07}
+    StarRotation: {x: 0, y: 0, z: 0, w: 0}
+  - StarPosition: {x: -0.06, y: 0, z: -0.07}
+    StarRotation: {x: 0, y: 0, z: 0, w: 0}
+  - StarPosition: {x: -0.06, y: 0, z: -0.07}
+    StarRotation: {x: 0, y: 0, z: 0, w: 0}
+  - StarPosition: {x: -0.06, y: 0, z: -0.07}
+    StarRotation: {x: 0, y: 0, z: 0, w: 0}
+  - StarPosition: {x: -0.06, y: 0, z: -0.07}
+    StarRotation: {x: 0, y: 0, z: 0, w: 0}
+  - StarPosition: {x: -0.06, y: 0, z: -0.07}
+    StarRotation: {x: 0, y: 0, z: 0, w: 0}
+  - StarPosition: {x: -0.06, y: 0, z: -0.07}
+    StarRotation: {x: 0, y: 0, z: 0, w: 0}
+  - StarPosition: {x: -0.06, y: 0, z: -0.07}
+    StarRotation: {x: 0, y: 0, z: 0, w: 0}
+  - StarPosition: {x: -0.06, y: 0, z: -0.07}
+    StarRotation: {x: 0, y: 0, z: 0, w: 0}
+  - StarPosition: {x: -0.06, y: 0, z: -0.07}
+    StarRotation: {x: 0, y: 0, z: 0, w: 0}
+  - StarPosition: {x: -0.06, y: 0, z: -0.07}
+    StarRotation: {x: 0, y: 0, z: 0, w: 0}
+  - StarPosition: {x: -0.06, y: 0, z: -0.07}
+    StarRotation: {x: 0, y: 0, z: 0, w: 0}
