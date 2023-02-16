@@ -89,6 +89,12 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
             UpdateScore();
         }
+        if(other.gameObject.CompareTag("TargeTriggerStar"))
+        {
+            Destroy(other.gameObject);
+            PopStar();
+
+        }
         if (other.gameObject.CompareTag("Star"))      
          {          
         
@@ -109,14 +115,20 @@ public class Player : MonoBehaviour
         }        
     }
 
+    private void PopStar()
+    {
+        int i = 0;
+        if (i< _scenario.StarPositions.Length){
+            Instantiate(_goldStarPrefab, _scenario.StarPositions[i].StarPosition, _scenario.StarPositions[i].StarRotation);
+        }
+        i++;
+    }
 
     private void UpdateScore()
     {
         int i = 0;
-        if (i < _scenario.WallPositions.Length) {
-            
-                Instantiate(_wallPrefab, _scenario.WallPositions[ScoreValue].WallPosition, _scenario.WallPositions[ScoreValue].WallRotation);
-                Instantiate(_goldStarPrefab, _scenario.StarPositions[ScoreValue].StarPosition, _scenario.StarPositions[ScoreValue].StarRotation);
+        if (i < _scenario.WallPositions.Length) {            
+                Instantiate(_wallPrefab, _scenario.WallPositions[ScoreValue].WallPosition, _scenario.WallPositions[ScoreValue].WallRotation);                
             i++;
         }
     

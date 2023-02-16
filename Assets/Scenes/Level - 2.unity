@@ -204,9 +204,9 @@ MonoBehaviour:
   _scoreText: {fileID: 1785978938}
   _scenario: {fileID: 11400000, guid: 008ef6932dca95e47878a6a183b8fa94, type: 2}
   _wallPrefab: {fileID: 7884454211581300893, guid: 81d2cf16b92ebf842a42c8f1fbb54125, type: 3}
-  _goldStarPrefab: {fileID: 0}
-  _winStarPrefab: {fileID: 0}
-  _winParticulesPrefab: {fileID: 0}
+  _goldStarPrefab: {fileID: 8681874186103545675, guid: 620cfe2f528c3f14a99e95134bb781d8, type: 3}
+  _winStarPrefab: {fileID: 6264584755420661388, guid: 1df3695cf1805ae43a853fcda3d86b34, type: 3}
+  _winParticulesPrefab: {fileID: 6954743089486650004, guid: eeeb216582702494faf397e2d88c9772, type: 3}
 --- !u!54 &379344880
 Rigidbody:
   m_ObjectHideFlags: 0
