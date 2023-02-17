@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     private int ScoreValue;
     
     [SerializeField] private TMP_Text _scoreText;
+    [SerializeField] private TMP_Text _scoreStars;
     [SerializeField] private ScenarioData _scenario;
     [SerializeField] private GameObject _wallPrefab;
     [SerializeField] private GameObject _goldStarPrefab;
@@ -32,9 +33,12 @@ public class Player : MonoBehaviour
     private AudioSource clingSound;
     private bool soundPlayed = false;
     private bool clingEnabled = false;
+    private int _scoreStar = 0;
     //private bool _reset = false;
     void Start()
     {
+        
+        
         //Get Sound in Component
         clingSound = GetComponent<AudioSource>();
 
@@ -43,8 +47,10 @@ public class Player : MonoBehaviour
         Scene scene = SceneManager.GetActiveScene();
         if(scene.name == "Level - 1")
         {
+            
             PlayerPrefs.DeleteKey("Score");
             PlayerPrefs.DeleteKey("ScoreValue");
+            
         }
         if(scene.name == "Level - 2")
         {
@@ -59,6 +65,7 @@ public class Player : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
      
         //Get Score
+        
         _scoreText.text = PlayerPrefs.GetString("Score");
         ScoreValue = PlayerPrefs.GetInt("ScoreValue");
     }
@@ -93,14 +100,20 @@ public class Player : MonoBehaviour
         {
             Destroy(other.gameObject);
             PopStar();
+            UpdateScore();
 
         }
         if (other.gameObject.CompareTag("Star"))      
-         {          
-        
+         {   
+                   
+            _scoreStars.text = "Stars : "+ _scoreStar;
             clingEnabled = true;
             Destroy(other.gameObject);
-            _speed += 1.0f;
+            _speed += 2.0f;
+            if(_scoreStar == 6)
+        {
+            Instantiate(_winParticulesPrefab,transform.position,Quaternion.identity);
+        }
         
          }
     }
@@ -117,11 +130,12 @@ public class Player : MonoBehaviour
 
     private void PopStar()
     {
-        int i = 0;
-        if (i< _scenario.StarPositions.Length){
-            Instantiate(_goldStarPrefab, _scenario.StarPositions[i].StarPosition, _scenario.StarPositions[i].StarRotation);
+        
+        if (_scoreStar< _scenario.StarPositions.Length){
+            Instantiate(_goldStarPrefab, _scenario.StarPositions[_scoreStar].StarPosition, _scenario.StarPositions[_scoreStar].StarRotation);
         }
-        i++;
+        _scoreStar++;
+        
     }
 
     private void UpdateScore()
@@ -150,6 +164,13 @@ public class Player : MonoBehaviour
         {
             PlayerPrefs.SetInt("ScoreValue", ScoreValue);
             SceneManager.LoadScene("Level - 3");
+
+
+        }
+        else if (ScoreValue == 24)
+        {
+            PlayerPrefs.SetInt("ScoreValue", ScoreValue);
+            //SceneManager.LoadScene("Level - 3");
 
 
         }
