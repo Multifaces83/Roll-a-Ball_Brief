@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
 {
     private Rigidbody _rigidbody;
     private int ScoreValue;
-    
+
     [SerializeField] private TMP_Text _scoreText;
     [SerializeField] private TMP_Text _scoreStars;
     [SerializeField] private ScenarioData _scenario;
@@ -18,12 +18,17 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _goldStarPrefab;
     [SerializeField] private GameObject _winStarPrefab;
     [SerializeField] private GameObject _winParticulesPrefab;
-    
+
 
     //MOVEMENT
     private float movementX;
     private float movementY;
     private float _speed = 5.0f;
+
+    //SHADER
+    [SerializeField] private Shader _dissolve;
+    private float startShader = 0.0f;
+    private float endShader = 1.0f;
 
     //STAR EFFECTS ON PLAYER
     private float clingInterval = 0.3f;
@@ -37,42 +42,42 @@ public class Player : MonoBehaviour
     //private bool _reset = false;
     void Start()
     {
-        
-        
+
+
         //Get Sound in Component
         clingSound = GetComponent<AudioSource>();
 
-        
+
         //Check first Scene
         Scene scene = SceneManager.GetActiveScene();
-        if(scene.name == "Level - 1")
+        if (scene.name == "Level - 1")
         {
-            
+
             PlayerPrefs.DeleteKey("Score");
             PlayerPrefs.DeleteKey("ScoreValue");
-            
+
         }
-        if(scene.name == "Level - 2")
+        if (scene.name == "Level - 2")
         {
-            PlayerPrefs.SetInt("ScoreValue",  8);
+            PlayerPrefs.SetInt("ScoreValue", 8);
         }
-        if(scene.name == "Level - 3")
+        if (scene.name == "Level - 3")
         {
             PlayerPrefs.SetInt("ScoreValue", 16);
         }
-        
+
         //Get Rigidbody Component
         _rigidbody = GetComponent<Rigidbody>();
-     
+
         //Get Score
-        
+
         _scoreText.text = PlayerPrefs.GetString("Score");
         ScoreValue = PlayerPrefs.GetInt("ScoreValue");
     }
 
     void Update()
-    { 
-        if(clingEnabled)
+    {
+        if (clingEnabled)
         {
             ClingCling();
         }
@@ -80,9 +85,10 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
-        _rigidbody.AddForce(movement*_speed);
+        _rigidbody.AddForce(movement * _speed);
     }
-    void OnMove(InputValue movementValue){
+    void OnMove(InputValue movementValue)
+    {
         Vector2 movementVector = movementValue.Get<Vector2>();
         movementX = movementVector.x;
         movementY = movementVector.y;
@@ -96,26 +102,31 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
             UpdateScore();
         }
-        if(other.gameObject.CompareTag("TargeTriggerStar"))
+        if (other.gameObject.CompareTag("TargeTriggerStar"))
         {
-            Destroy(other.gameObject);
+            //GetComponent<Renderer>().material.color = Color.yellow;
+            //other.GetComponent<Renderer>().material.color = Color.yellow;
+
+            other.gameObject.GetComponent<Renderer>().material.shader = _dissolve;
+            other.gameObject.GetComponent<Renderer>().material.SetFloat("float", startShader);
+            Destroy(other.gameObject, 0.9f);
             PopStar();
             UpdateScore();
 
         }
-        if (other.gameObject.CompareTag("Star"))      
-         {   
-                   
-            _scoreStars.text = "Stars : "+ _scoreStar;
+        if (other.gameObject.CompareTag("Star"))
+        {
+
+            _scoreStars.text = "Stars : " + _scoreStar;
             clingEnabled = true;
             Destroy(other.gameObject);
             _speed += 2.0f;
-            if(_scoreStar == 6)
-        {
-            Instantiate(_winParticulesPrefab,transform.position,Quaternion.identity);
+            if (_scoreStar == 6)
+            {
+                Instantiate(_winParticulesPrefab, transform.position, Quaternion.identity);
+            }
+
         }
-        
-         }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -125,36 +136,38 @@ public class Player : MonoBehaviour
             Debug.Log(collision.gameObject.transform.position);
             Destroy(collision.gameObject);
             UpdateScore();
-        }        
+        }
     }
 
     private void PopStar()
     {
-        
-        if (_scoreStar< _scenario.StarPositions.Length){
+
+        if (_scoreStar < _scenario.StarPositions.Length)
+        {
             Instantiate(_goldStarPrefab, _scenario.StarPositions[_scoreStar].StarPosition, _scenario.StarPositions[_scoreStar].StarRotation);
         }
         _scoreStar++;
-        
+
     }
 
     private void UpdateScore()
     {
         int i = 0;
-        if (i < _scenario.WallPositions.Length) {            
-                Instantiate(_wallPrefab, _scenario.WallPositions[ScoreValue].WallPosition, _scenario.WallPositions[ScoreValue].WallRotation);                
+        if (i < _scenario.WallPositions.Length)
+        {
+            Instantiate(_wallPrefab, _scenario.WallPositions[ScoreValue].WallPosition, _scenario.WallPositions[ScoreValue].WallRotation);
             i++;
         }
-    
+
         ScoreValue++;
         PlayerPrefs.SetString("Score", "Score : " + ScoreValue.ToString());
         _scoreText.text = PlayerPrefs.GetString("Score");
-        
+
 
 
 
         if (ScoreValue == 8)
-        {            
+        {
             PlayerPrefs.SetInt("ScoreValue", ScoreValue);
             SceneManager.LoadScene("Level - 2");
 
@@ -191,30 +204,30 @@ public class Player : MonoBehaviour
 
 
     private void ClingCling()
-{
-    if (clingduration >= 0)
     {
-        Renderer color = GetComponent<Renderer>();
-        Renderer emissive = GetComponent<Renderer>();
-
-        if (!soundPlayed)
+        if (clingduration >= 0)
         {
-            clingSound.Play();
-            soundPlayed = true;
-        }
+            Renderer color = GetComponent<Renderer>();
+            Renderer emissive = GetComponent<Renderer>();
 
-        //color.material.color = Color.Lerp(clingColorFirst, clingColorNext, Mathf.PingPong(Time.time, clingInterval));
-        emissive.material.EnableKeyword("_EMISSION");
-        emissive.material.SetColor("_EmissionColor", Color.Lerp(clingColorFirst, clingColorNext, Mathf.PingPong(Time.time, clingInterval)));
-        clingduration -= Time.deltaTime;
+            if (!soundPlayed)
+            {
+                clingSound.Play();
+                soundPlayed = true;
+            }
+
+            //color.material.color = Color.Lerp(clingColorFirst, clingColorNext, Mathf.PingPong(Time.time, clingInterval));
+            emissive.material.EnableKeyword("_EMISSION");
+            emissive.material.SetColor("_EmissionColor", Color.Lerp(clingColorFirst, clingColorNext, Mathf.PingPong(Time.time, clingInterval)));
+            clingduration -= Time.deltaTime;
+        }
+        else
+        {
+            Renderer emissive = GetComponent<Renderer>();
+            emissive.material.DisableKeyword("_EMISSION");
+            //color = actualColor;
+            clingSound.Stop();
+            soundPlayed = false;
+        }
     }
-    else
-    {
-        Renderer emissive = GetComponent<Renderer>();
-        emissive.material.DisableKeyword("_EMISSION");
-        //color = actualColor;
-        clingSound.Stop();
-        soundPlayed = false;
-    }
-}
 }
